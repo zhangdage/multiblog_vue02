@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import '../lib/sockjs'
-// import '../lib/stomp'
 
 Vue.use(Vuex)
 
@@ -15,10 +13,8 @@ export default new Vuex.Store({
     },
     routes: [],
     msgList: [],
-    isDotMap: new Map(),
     currentFriend: {},
     stomp: null,
-    nfDot: false,
     token: window.sessionStorage.getItem('token') == null ? '' : JSON.parse(window.sessionStorage.getItem('token')),
   },
   mutations: {
@@ -35,20 +31,11 @@ export default new Vuex.Store({
       window.localStorage.removeItem('user');
       state.routes = [];
     },
-    toggleNFDot(state, newValue){
-      state.nfDot = newValue;
-    },
     updateMsgList(state, newMsgList){
       state.msgList = newMsgList;
     },
     updateCurrentFriend(state, newFriend){
       state.currentFriend = newFriend;
-    },
-    addValue2DotMap(state, key){
-      state.isDotMap.set(key, "您有未读消息")
-    },
-    removeValueDotMap(state, key){
-      state.isDotMap.delete(key);
     },
     storeToken(state,token){
       state.token = token;
